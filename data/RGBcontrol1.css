@@ -1,0 +1,94 @@
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: #CCCCCC;
+}
+.menu {
+    overflow: hidden;
+    background-color: #BBBBBB;
+    
+}
+
+/* container for hsl */
+.hsl {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+/* container for hue wheel*/
+.color-wheel {
+  position: relative;
+  width: 35%;
+  min-width: 200px;
+}
+/*this makes Hue Wheel aspect-ratio 1:1*/
+.color-wheel:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}  
+
+/*container for lightness and saturation sliders*/
+.hsl-slider {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  /*justify-content: center;*/
+  vertical-align: middle;
+  justify-content: space-between;
+  flex-grow: 10;
+  position: relative;
+  
+}
+
+.slider {
+  flex:1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+/* container for s-slider */
+.h-slider {
+  
+}
+/* container for s-slider */
+.s-slider {
+  
+}
+/* container for l-slider */
+.l-slider {
+  
+}
+
+
+
+/* container for rgb */
+.rgb {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: relative;
+  
+}
+
+
+.r-slider {
+  flex:1;
+}
+
+.g-slider {
+  flex:1;
+}
+
+.b-slider {
+  flex:1;
+}
+

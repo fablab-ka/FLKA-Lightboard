@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>FLKA Lightboard RGB-Control</title>
+      <link rel="stylesheet" href="RGBcontrol.css">
+      <link rel="stylesheet" href="RGBcontrol1.css">
+</head>
+
+<body>
+  <form  autocomplete="off"><!-- no stored values after refresh-->
+  <div class="menu" id="menu">Menu later here </div>
+  <h1>HSL (Hue-Saturation-Lightness)</h1>
+  <div class="hsl" id="hsl">
+    <div class="color-wheel" id="color-wheel"></div>
+    <div class="hsl-slider" id="hsl-slider">
+      <div class="h-slider slider" id="h-slider"> 
+        <h1>H:&nbsp;</h1>
+        <input type="number"  id="hueVal" name="hueVal"  value="0" min="0" max="359" step="1" 
+          maxlength="3" size="5" width="5" required>&nbsp;
+        <input type="range"  size="100%" min="0" max="359" value="0" step="1" id="hueSlider" name="hueSlider" class="hue" >
+      </div>
+      <div class="s-slider slider" id="s-slider"> 
+        <h1>S:&nbsp;</h1>
+        <input type="number" id="satVal" name="satVal" size="3" value="100" min="0" max="100" step="1" required>&nbsp;
+        <input type="range"  size="100%" min="0" max="100" value="100" step="1" id="satSlider" name="satSlider" class="saturation" >
+      </div>
+      <div class="l-slider slider" id="l-slider"> 
+        <h1>L:&nbsp;</h1>
+        <input type="number" id="lightVal" name="lightVal" size="3" value="50" min="0" max="100" step="1" required>&nbsp;
+        <input type="range"  size="100%" min="0" max="100" value="50" step="1" id="lightSlider" name="lightSlider" class="lightness" >
+      </div>
+    </div>
+  </div>
+  <h1>RGB (Red-Green-Blue)</h1>
+
+  <div class="rgb" id="rgb">
+    <div class="r-slider slider" id="r-slider"> 
+      <h1>R:&nbsp;</h1>
+      <input type="number" id="redVal" name="redVal" size="3" value="255" min="0" max="255" step="1" >&nbsp;
+      <input type="range" min="0" max="255" value="255" step="1" id="redSlider" name="redSlider" class="red" required> 
+    </div>
+    <div class="g-slider slider" id="g-slider"> 
+      <h1>G:&nbsp;</h1>
+      <input type="number" id="greenVal" name="greenVal" size="3" value="0" min="0" max="255" step="1" > &nbsp;
+      <input type="range" min="0" max="255" value="0" step="1" id="greenSlider" name="greenSlider" class="green" required>
+    </div>
+    <div class="b-slider slider" id="b-slider"> 
+      <h1>B:&nbsp;</h1>
+      <input type="number" id="blueVal" name="greenVal" size="3" value="0" min="0" max="255" step="1" > &nbsp;
+      <input type="range" min="0" max="255" value="0" step="1" id="blueSlider" name="blueSlider" class="blue" required> 
+     </div>
+  </div>
+
+  </form>
+  
+  <div id"finalButtons" name="finalButtons">
+    <input type="button" name="Rainbow" value="RAINBOW" id="rainbowButton">
+    <input type="button" name="Cycle" value="CYCLE" id="cycleButton">
+  </div>
+  <script  src="RGBcontrol.js"></script>
+
+
+</body>
+
+
+</html>
+
+<!--
+Links: https://www.mediaevent.de/css/farbrechner.html
+
+
+-->

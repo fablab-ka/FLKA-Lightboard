@@ -1,0 +1,246 @@
+:root{
+    --hueGradient: linear-gradient(90deg, hsl( 0,100%,50%) 0%, hsl( 36,100%,50%) 10%, hsl( 72,100%,50%) 20%, 
+                                      hsl(108,100%,50%) 30%, hsl(144,100%,50%) 40%, hsl(180,100%,50%) 50%,
+                                      hsl(216,100%,50%) 60%, hsl(252,100%,50%) 70%, hsl(288,100%,50%) 80%,
+                                      hsl(324,100%,50%) 90%, hsl(360,100%,50%) 100%);
+                                      
+    --satGradient: linear-gradient(90deg, hsl( 0,0%,50%) 0%, hsl( 0,10%,50%) 10%, hsl( 0,20%,50%) 20%, 
+                                      hsl(0,30%,50%) 30%, hsl(0,40%,50%) 40%, hsl(0,50%,50%) 50%,
+                                      hsl(0,60%,50%) 60%, hsl(0,70%,50%) 70%, hsl(0,80%,50%) 80%,
+                                      hsl(0,90%,50%) 90%, hsl(0,100%,50%) 100%);
+    --lightGradient: linear-gradient(90deg, hsl( 0,100%,0%) 0%, hsl( 0,100%,10%) 10%, hsl(0,100%,20%) 20%, 
+                                      hsl(0,100%,30%) 30%, hsl(0,100%,40%) 40%, hsl(0,100%,50%) 50%,
+                                      hsl(0,100%,60%) 60%, hsl(0,100%,70%) 70%, hsl(0,100%,80%) 80%,
+                                      hsl(0,100%,90%) 90%, hsl(0,100%,100%) 100%);                                      
+    --redGradient: linear-gradient(90deg, rgb( 0,0,0) 0%, rgb( 180, 0, 0) 35%, rgb( 255, 0, 0) 100%);
+    --greenGradient: linear-gradient(90deg, rgb( 0,0,0) 0%, rgb( 0, 180, 0) 35%, rgb( 0, 255, 0) 100%);
+    --blueGradient: linear-gradient(90deg, rgb( 0,0,0) 0%, rgb( 0, 0, 180) 35%, rgb( 0, 0, 255) 100%);
+	--hueButton:   hsl(0,100%,50%);
+	--satButton:   hsl(0,100%,50%);
+	--lightButton: hsl(0,100%,50%);
+	--redButton:   #FF0000;
+	--greenButton: #000000;
+	--blueButton:  #000000;
+	
+}
+
+
+h1 {
+ 	font-family: "Arial Black", "Arial Narrow", sans-serif;
+	font-size: x-large;
+	font-weight: bold;
+
+}
+input[type=number] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin: 10px 0;
+ 	font-family: "Arial Black", "Arial Narrow", sans-serif;
+	font-size: x-large;
+	font-weight: bold;
+	width: 3em;
+	height: 1em;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+
+input[type=range].hue::-webkit-slider-runnable-track, 
+input[type=range].hue:focus::-webkit-slider-runnable-track  {
+  background: var(--hueGradient);
+}
+input[type=range].saturation::-webkit-slider-runnable-track,
+input[type=range].saturation:focus::-webkit-slider-runnable-track  {
+  background: var( --satGradient);
+}
+input[type=range].lightness::-webkit-slider-runnable-track,
+input[type=range].lightness:focus::-webkit-slider-runnable-track  {
+  background: var(--lightGradient);
+}
+input[type=range].red::-webkit-slider-runnable-track,
+input[type=range].red:focus::-webkit-slider-runnable-track  {
+  background: var(--redGradient);
+}
+input[type=range].green::-webkit-slider-runnable-track,
+input[type=range].green:focus::-webkit-slider-runnable-track  {
+  background: var(--greenGradient);
+}
+input[type=range].blue::-webkit-slider-runnable-track,
+input[type=range].blue:focus::-webkit-slider-runnable-track  {
+  background: var(--blueGradient);
+}
+input[type=range].hue::-webkit-slider-thumb {
+  background: var(--hueButton);	
+}
+input[type=range].lightness::-webkit-slider-thumb {
+  background: var(--lightButton);	
+}
+input[type=range].saturation::-webkit-slider-thumb {
+  background: var(--satButton);	
+}
+input[type=range].red::-webkit-slider-thumb {
+  background: var(--redButton);	
+}
+input[type=range].green::-webkit-slider-thumb {
+  background: var(--greenButton);	
+}
+input[type=range].blue::-webkit-slider-thumb {
+  background: var(--blueButton);	
+}
+
+input[type=range].hue::-moz-range-track,
+input[type=range].hue:focus::-moz-range-track  {
+  background: var(--hueGradient);
+}
+input[type=range].saturation::-moz-range-track,
+input[type=range].saturation:focus::-moz-range-track  {
+  background: var( --satGradient);
+}
+input[type=range].lightness::-moz-range-track,
+input[type=range].lightness:focus::-moz-range-track  {
+  background: var(--lightGradient);
+}
+input[type=range].red::-moz-range-track,
+input[type=range].red:focus::-moz-range-track  {
+  background: var(--redGradient);
+}
+input[type=range].green::-moz-range-track,
+input[type=range].green:focus::-moz-range-track  {
+  background: var(--greenGradient);
+}
+input[type=range].blue::-moz-range-track,
+input[type=range].blue:focus::-moz-range-track  {
+  background: var(--blueGradient);
+}
+input[type=range].hue::-moz-range-thumb {
+  background: var(--hueButton);
+}
+input[type=range].saturation::-moz-range-thumb {
+  background: var(--satButton);
+}
+input[type=range].lightness::-moz-range-thumb {
+  background: var(--lightButton);
+}
+input[type=range].red::-moz-range-thumb {
+  background: var(--redButton);
+}
+input[type=range].green::-moz-range-thumb {
+  background: var(--greenButton);
+}
+input[type=range].blue::-moz-range-thumb {
+  background: var(--blueButton);
+}
+
+input[type=range].hue::-ms-track  {
+  background: var(--hueGradient);
+}
+input[type=range].saturation::-ms-track  {
+  background: var( --satGradient);
+}
+input[type=range].lightness::-ms-track  {
+  background: var(--lightGradient);
+}
+input[type=range].red::-ms-track  {
+  background: var(--redGradient);
+}
+input[type=range].green::-ms-track  {
+  background: var(--greenGradient);
+}
+input[type=range].blue::-ms-track  {
+  background: var(--blueGradient);
+}
+input[type=range].hue::-ms-thumb {
+  background: var(--hueButton);
+}
+input[type=range].saturation::-ms-thumb {
+  background: var(--satButton);
+}
+input[type=range].lightness::-ms-thumb {
+  background: var(--lightButton);
+}
+input[type=range].red::-ms-thumb {
+  background: var(--redButton);
+}
+input[type=range].green::-ms-thumb {
+  background: var(--greenButton);
+}
+input[type=range].blue::-ms-thumb {
+  background: var(--blueButton);
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90%;
+  margin: 10.8px 0;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 14.4px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border-radius: 5px;
+  border: 0.2px solid #010101;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1.3px 1.3px 9.2px #000000, 0px 0px 1.3px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 36px;
+  border-radius: 50px;
+  background: #ff0000;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -11px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: linear-gradient(90deg, rgb(150,150,150) 0%, rgb(200,200,200) 100%);
+}
+input[type=range]::-moz-range-track {
+  cursor: pointer;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border-radius: 5.8px;
+  height: 18px;
+  border: 1px solid #010101;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1.3px 1.3px 9.2px #000000, 0px 0px 1.3px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 36px;
+  border-radius: 50px;
+  background: #ff0000;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 14.4px;
+  cursor: pointer;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #d76f25;
+  border: 0.2px solid #010101;
+  border-radius: 11.6px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+  background: #da7127;
+  border: 0.2px solid #010101;
+  border-radius: 11.6px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 1.3px 1.3px 9.2px #000000, 0px 0px 1.3px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 36px;
+  border-radius: 50px;
+  background: #ff0000;
+  cursor: pointer;
+  height: 14.4px;
+}

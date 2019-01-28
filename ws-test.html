@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+  <title>WebSocket Test</title>
+  <script>
+    var wsUri = "ws://192.168.170.146/ws";
+    //var wsUri = "ws://192.168.1.251/ws"
+    var output;
+    var websocket = new WebSocket(wsUri);
+
+  function init(){
+    output = document.getElementById("output");
+    testWebSocket();
+  }
+
+  function testWebSocket()   {
+    websocket.onopen = function(evt) { onOpen(evt) };
+    websocket.onclose = function(evt) { onClose(evt) };
+    websocket.onmessage = function(evt) { onMessage(evt) };
+    websocket.onerror = function(evt) { onError(evt) };
+  }
+
+  function onOpen(evt)   {
+    writeToScreen("CONNECTED");
+    doSend("WebSocket rocks");
+  }
+
+  function onClose(evt)   {
+    writeToScreen("DISCONNECTED");
+  }
+
+  function onMessage(evt)   {
+    writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
+    return( true);  //false closes connection...
+  }
+
+  function onError(evt)   {
+    writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+  }
+
+  function doSend(message)   {
+    websocket.send(message);
+    writeToScreen("SENT: " + message);
+  }
+
+  function writeToScreen(message)   {
+    var pre = document.createElement("p");
+    pre.style.wordWrap = "break-word";
+    pre.innerHTML = message;
+    output.insertBefore(pre, output.firstChild);
+  }
+
+  window.addEventListener("load", init, false);
+  
+  function sendData() {
+    var myMessage = '{"magic": "FLKA","cmd": "RGB", "value": [124,202,100], delay: 70}';
+    doSend(myMessage);		
+  }
+
+  </script>
+
+  <h2>WebSocket Test</h2>
+  
+  <input type="text" id="message">
+  <input type="button" id="button" name="button" value="clickme" onclick=sendData()>
+  <div id="output"></div>
+  
+  
+  

@@ -8,15 +8,18 @@ Das hier ist die Software für unsere Version des [LIGHTBOARD-Workshops aus dem 
 Die Regler sind synchronisiert, so dass der Zusammenhang zwischen den RGB-Farbwerten und dem HSL-Modell verständlich erklärt werden kann.
 
 Folgende Schritte sind sinnvoll, um die additive Farbmischung zu erläutern:
+
 ### Den Farbwert (Hue) erforschen ###
 Bei voller Sättigung (100%) und halber Helligkeit (50%) wird der H-Regler über den gesamten Wertebereich verstellt.
 Es fällt auf, dass jeder Farbwert nur aus zwei der drei Grundfarben gemischt wird. Beginnend bei Rot wird der Regler nach rechts gezogen und damit immer mehr Grünanteil hinzugemischt, bis bei 100% Rot und Grün Gelb ensteht.
 Beim Weiterziehen wird nun Rot reduziert, bis nur noch reines Grün leuchtet. Wieder weiter wird Blau zum Grün hinzugefügt, bis Cyan angezeigt wird.  Beim Weiterdrehen wird Grün reduziert, bis nur noch Balu leuchtet. Nun wird wieder Rot hinzugefügt, bis bei 100% Rot und 100% Blau Magenta entsteht. Beim Weiterziehen wird nun wieder Blau redzuziert, bis Rot übrigbleibt.
-###Helligkeit (Lightness) erforschen###
+
+### Helligkeit (Lightness) erforschen ###
 Im Anschluss wird der Helligkeitsregler erkundet:
 Wird dieser nach rechts (Richtung 100%) verschoben, so erkennt man bei den RGB-Reglern, dass nun die dunkleren Regler alle ebenfalls nach rechts gezogen werden.  In der Endstellung bei 100% leuchten alle drei Farben und das entstehende Licht ist Weiß. 
 Wird der Regler nach links gezogen, wandern alle drei RGB-Farben proportial ebenfalls nach links, bis bei 0% die LEDs erloschen sind, bzw. Schwarz entstanden ist.
-###Sättigung (Saturation) erforschen###
+
+### Sättigung (Saturation) erforschen ###
 Zuletzt wird der Sättigungsregler erkundet: Bei einem Helligkeitswert von 50% steht dieser zunächst bei 100%, so dass eine reine Farbe angezeigt wird.
 Beim nach Links ziehen (Sättigung wegnehmen), laufen die RGB-Regler aufeinander zu: Die helleren Werte werden dunkler, während die dunkleren Werte heller werden.  Bei einer Sättigung von 0% treffen sich die RGB-Werte genau beim Wert der Helligkeit, es entsteht Grau.
 

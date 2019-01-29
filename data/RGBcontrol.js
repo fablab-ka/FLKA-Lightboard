@@ -11,8 +11,11 @@ if (typeof XMLHttpRequest === "undefined") {
 var websocket = null;
 
 function startWebsocket(){
-
-    websocket = new WebSocket("ws://" + location.host +"/ws");
+    if ("http:" === location.protocol) {
+      websocket = new WebSocket("ws://" + location.host +"/ws");
+    } else  if ("https:" === location.protocol) {
+      websocket = new Websocket("wss://" + location.host + "ws")
+    }
     websocket.onopen = function(){
       console.log('connected!');
     };
@@ -467,8 +470,8 @@ function doGetRequest(_url, _func_onReady, requestIsBinary ) {
   xhr.send(null);
 }  
 
-document.getElementById("rainbowButton").addEventListener("click", function(){websocket.send('{"magic": "FLKA","cmd": "RAINBOW", delay: 70}');});
-document.getElementById("cycleButton").addEventListener("click", function(){websocket.send('{"magic": "FLKA","cmd": "CYCLE", delay: 70}');});
+document.getElementById("rainbowButton").addEventListener("click", function(){websocket.send('{"magic": "FLKA","cmd": "RAINBOW", delay: 30}');});
+document.getElementById("cycleButton").addEventListener("click", function(){websocket.send('{"magic": "FLKA","cmd": "CYCLE", delay: 30}');});
 
 doGetRequest( "/.menu.html", retrieveMenu);
                            

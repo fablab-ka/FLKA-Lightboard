@@ -16,18 +16,19 @@ function startWebsocket(){
     } else  if ("https:" === location.protocol) {
       websocket = new Websocket("wss://" + location.host + "ws")
     }
-    websocket.onopen = function(){
-      console.log('connected!');
+    if (websocket != null) {
+      websocket.onopen = function(){
+        console.log('connected!');
+      };
+      websocket.onmessage = function(e){
+        console.log(e.data);
+      };
+      websocket.onclose = function(){
+        console.log('closed!');
+        //reconnect now
+        checkWebsocket();
+      }  
     };
-    websocket.onmessage = function(e){
-      console.log(e.data);
-    };
-    websocket.onclose = function(){
-      console.log('closed!');
-      //reconnect now
-      checkWebsocket();
-    };
-
 }
 
 function checkWebsocket(){

@@ -2,7 +2,7 @@ FLKA-LIGHTBOARD
 ===
 ___
 Das hier ist die Software für unsere Version des [LIGHTBOARD-Workshops aus dem Projekt PHABLABS 4.0](http://phablabs.eu/workshop/light-board). Wir steuern die WS2812-LEDs über eine Weboberfläche, die einerseits RGB-Regler bietet, andererseits die Farbauswahl über einen Farbkreis im HSL-System bietet.
-![](./doc/FLKA-lightboard-finished.jpg)
+![](./docs/FLKA-lightboard-finished.jpg)
 ![Weboberfläche der Lightboardsteuerung](./Lightboard-Screen.png)
 
 Die Regler sind synchronisiert, so dass der Zusammenhang zwischen den RGB-Farbwerten und dem HSL-Modell verständlich erklärt werden kann.
@@ -37,27 +37,27 @@ Zusammenbau
 - Dabei dann die Boards ggf. auf teilnehmerspezifische SSID und PWD konfigurieren! (ggf. VOR dem Workshop)
 - Teile für [Plattenhalter lasern (entworfen für 3,7mm Buche)](./SVG-Laserparts/FLKA-Lightboard.svg)
 - WS2812 RGB-Streifen mit 9LED **mittig** wie abgebildet auf die Grundplatte kleben. Data In (DI) muss auf die Controllerseite zeigen, die erste LED muss dabei ausserhalb des späteren Controllergehäuses liegen.
-![](./doc/strip-begin.jpg)
+![](./docs/strip-begin.jpg)
 - An den Wemos drei kürzere Kabel anlöten: ***5V***, ***GND*** und ***D5*** *(Arduino 14*)
 - Die Kabel auf der Stirnseite der Wemos-Platine nach aussen führen, so dass in Schreibrichtung
   - die **+5V-Leitung** unten liegt
   - die **GND-Leitung** oben liegt
   - die Leitung von **D5 (Data In)** in der Mitte
-  ![](./doc/wemos-wired.jpg)
+  ![](./docs/wemos-wired.jpg)
 - Alle drei Kabel ca 5mm überstehen lassen und auf etwa 3mm abisolieren.
 - Die drei Kabel an die entsprechend benannten Pins des LED-Streifen anlöten.
-    ![](./doc/wemos-soldered.jpg)
+    ![](./docs/wemos-soldered.jpg)
 - Das erste Gehäuseteil über die Lötpunkte aufstecken
-  ![](./doc/case-step1.jpg)
+  ![](./docs/case-step1.jpg)
 - Die seitlichen Gehäuseteile von aussen aufstecken, dabei die Seite mit Loch zum Reset-Taster orientieren
-  ![](./doc/case-step2.jpg)
+  ![](./docs/case-step2.jpg)
 - Die Wemos-Platine mit etwas Heisskleber an der Stirnseite befestigen (nur so hoch, dass auch der Gehäusedeckel später noch passt!
 Die Wemos-Platine soweit in den noch heissen Kleber schieben, dass der USB-Anschluss nicht über die Gehäuseinnenkante ragt.
 Die Platine darf dabei auf der Stirnseite etwas nach unten gedrückt werden.
-  ![](./doc/case-step3.jpg)
+  ![](./docs/case-step3.jpg)
 - Nun die Teilnehmer ihre Platine testen lassen. Noch ist das Gehäuse nicht verschlossen und Reparaturen möglich.
 - Wenn alles funktioniert, Gehäuse schliessen.
-  ![](./doc/case-step1.jpg)
+  ![](./docs/case-step1.jpg)
 - Füße von beiden Seiten auf die Grundplatte schieben, so dass die Acrylglasplatte mittig über den LED gehalten wird. Die Füße ggf. verleimen.
 - Platte bemalen, beste Erfahrungen haben wir mit Molotow-Markern gemacht!
 
@@ -66,7 +66,7 @@ Software
 --------
 Es wird empfohlen eine möglichst aktuelle Arduino-IDE (mindestens 1.8.7) zu verwenden. Bei älteren IDEs kommt es mit den aktuellen ESP-Toolchains zu Problemen.  Die verwendeten asynchronen Bibliotheken benötigen mindestens die Version 2.3 des ESP-Tools, die entweder über den [Boardmanager](https://github.com/esp8266/Arduino#installing-with-boards-manager) oder aber direkt als [GIT-Version](https://arduino-esp8266.readthedocs.io/en/latest/installing.html#using-git-version)installiert werden kann.
 
-Zusätzlich muss der Arduino-IDE noch der [ESP-Uploadmanager hinzugefügt werden](http://esp8266.github.io/Arduino/versions/2.3.0/doc/filesystem.html#uploading-files-to-file-system "Uploading files to SPIFFS"). Damit bekommt die IDE unter dem Werkzeuge Menupunkt eine weitere Option: **"ESP8266 Sketch Data Upload"**. 
+Zusätzlich muss der Arduino-IDE noch der [ESP-Uploadmanager hinzugefügt werden](http://esp8266.github.io/Arduino/versions/2.3../docs/filesystem.html#uploading-files-to-file-system "Uploading files to SPIFFS"). Damit bekommt die IDE unter dem Werkzeuge Menupunkt eine weitere Option: **"ESP8266 Sketch Data Upload"**. 
 Mit dem Uploadmanager werden alle Dateien aus einem Unterverzeichnis namens "data" in ein SPIFFS-Dateisystem konvertiert und in den zweiten, 3MB großen, FLASH-Bereich des WeMos D1 mini geladen.
 
 Zum Fehlersuchen ist die Erweiterung [ESP Exception Stack Decoder](https://github.com/me-no-dev/EspExceptionDecoder) hilfreich, mit deren Hilfe festgestellt werden kann, wo etwas schief läuft, wenn beim Debuggen im Terminalfenster ein hexadezimaler Stackdump angezeigt wird.
@@ -83,7 +83,7 @@ Compilieren und Laden des Programmes
 - Herunterladen des Programmcodes oder Clonen des Github-Repositories
 - Installieren der zusätzlichen Komponenten in der Arduino IDE
   - ESP8266 Toolchain (entweder über Bibliotheksmanager oder aus [Github]([GIT-Version](https://arduino-esp8266.readthedocs.io/en/latest/installing.html#using-git-version)
-  - Installation des [ESP Sketch Data Upload-Tools](http://esp8266.github.io/Arduino/versions/2.3.0/doc/filesystem.html#uploading-files-to-file-system)
+  - Installation des [ESP Sketch Data Upload-Tools](http://esp8266.github.io/Arduino/versions/2.3../docs/filesystem.html#uploading-files-to-file-system)
   - Optional: [ESP Exception Stack Decoder](https://github.com/me-no-dev/EspExceptionDecoder) 
   - [**ESPAsyncUDP.h**]( http://github.com/me-no-dev/ESPAsyncUDP "Asynchrones UDP")
   - [**ESPAsyncTCP.h**]( http://github.com/me-no-dev/ESPAsyncTCP "Asynchrones TCP")

@@ -5,7 +5,7 @@ Das hier ist die Software für unsere Version des [LIGHTBOARD-Workshops aus dem 
 ![](./docs/FLKA-lightboard-finished.jpg)
 ![Weboberfläche der Lightboardsteuerung](./Lightboard-Screen.png)
 
-Die Regler sind synchronisiert, so dass der Zusammenhang zwischen den RGB-Farbwerten und dem HSL-Modell verständlich erklärt werden kann.
+Die Regler sind synchronisiert, so dass der Zusammenhang zwischen den RGB-Farbwerten und dem HSL-Modell verständlich erklärt werden kann.  Eine [interaktive Variante der Steuerung befindet sich hier](https://fablab-ka.github.io/FLKA-Lightboard/)
 
 Folgende Schritte sind sinnvoll, um die additive Farbmischung zu erläutern:
 

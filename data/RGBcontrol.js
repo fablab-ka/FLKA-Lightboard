@@ -16,7 +16,7 @@ function startWebsocket(){
     } else  if ("https:" === location.protocol) {
       websocket = new Websocket("wss://" + location.host + "/ws")
     }
-    if (websocket != null) {
+    if (websocket !== null) {
       websocket.onopen = function(){
         console.log('connected!');
       };

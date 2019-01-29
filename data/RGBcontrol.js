@@ -49,8 +49,10 @@ setInterval(checkWebsocket, 3000);
 
 function webSocketRGB(r,g,b) {
 	
-	console.log('{"magic": "FLKA","cmd": "RGB", "value": ['+r+','+g+','+b+'], delay: 70}');
-  websocket.send('{"magic": "FLKA","cmd": "RGB", "value": ['+r+','+g+','+b+'], delay: 70}');
+  console.log('{"magic": "FLKA","cmd": "RGB", "value": ['+r+','+g+','+b+'], delay: 70}');
+  if (websocket !== null) {
+    websocket.send('{"magic": "FLKA","cmd": "RGB", "value": ['+r+','+g+','+b+'], delay: 70}');
+  }	  
 
 }
 

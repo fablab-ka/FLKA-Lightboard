@@ -14,7 +14,7 @@ function startWebsocket(){
     if ("http:" === location.protocol) {
       websocket = new WebSocket("ws://" + location.host +"/ws");
     } else  if ("https:" === location.protocol) {
-      websocket = new WebSocket("wss://" + location.host + "/ws");
+      //websocket = new WebSocket("wss://" + location.host + "/ws");
     }
     if (websocket !== null) {
       websocket.onopen = function(){

@@ -7,6 +7,9 @@ Das hier ist die Software für unsere Version des [LIGHTBOARD-Workshops aus dem 
 
 Die Regler sind synchronisiert, so dass der Zusammenhang zwischen den RGB-Farbwerten und dem HSL-Modell verständlich erklärt werden kann.  Eine [interaktive Variante der Steuerung befindet sich hier](https://fablab-ka.github.io/FLKA-Lightboard/)
 
+Wenn das Lightboard in ein WLAN eingeloggt ist, zeigt es beim Start für 1 Minute die jeweilige IP-Adresse in einem Farbcode an.
+Der Umrechner Farbcode zu IP kann auch hier aufgerufen werden: https://fablab-ka.github.io/FLKA-Lightboard/decodeIP.html
+
 Folgende Schritte sind sinnvoll, um die additive Farbmischung zu erläutern:
 
 ### Den Farbwert (Hue) erforschen ###

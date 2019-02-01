@@ -6,12 +6,6 @@
 AsyncWebServer server(80);
 AsyncWebSocket ws("/ws"); // access at ws://[esp ip]/ws
 
-volatile boolean pending_reboot = false;
-volatile boolean pending_RGB = false;
-volatile uint8_t cycleRGB = 0;
-volatile uint8_t RGBtoSet[3];
-volatile uint32_t lastRun=millis();
-volatile uint16_t RGBdelay=50;
 
 
 void setupWebserver()
@@ -179,7 +173,7 @@ void handleWiFiRestart(AsyncWebServerRequest *request, boolean asAP){
   char  clientPWD[64]  = "";  
   Serial.println("WiFiSave start");
   int params = request->params();
-  String page;
+  String page = "";
   if (asAP) {
     for(int i=0;i<params;i++){
       AsyncWebParameter* p = request->getParam(i);
@@ -194,34 +188,15 @@ void handleWiFiRestart(AsyncWebServerRequest *request, boolean asAP){
         }
       }
     }
-    page += FPSTR(HTML_HEAD);
-    page.replace("{title}", "Versuche zu WLAN zu verbinden");
-  } else {  
-    page += FPSTR(HTML_HEAD);
-    page.replace("{title}", "Restart als Accesspoint");
   }
-  page += FPSTR(HTML_SELECTSCRIPT);
-  page += FPSTR(HTML_BASIC_STYLES);
-  page += FPSTR(HTML_BODYSTART);
-  File menuFile = SPIFFS.open("/.menu.html", "r");
+  File menuFile = SPIFFS.open("/decodeIP.html", "r");
   while (menuFile.available()){
+    Serial.println("  reading line...");
     page += menuFile.readStringUntil('\n');
   }
-  String line;
-  if (asAP) {
-    line = FPSTR(HTML_MSG_RESTART_STA);
-  } else {
-    line = FPSTR(HTML_MSG_RESTART_AP);  
-  }
-  line.replace("{SSID}",GlobalConfig.mySSID );
-  line.replace("{PWD}", GlobalConfig.myPWD);
-  page+=line; 
-  page+=FPSTR(HTML_LINK_SCAN_CONFIG);page+="<br/>";
-  page+=FPSTR(HTML_LINK_AP_CONFIG);page+="<br/>";
-  //page+=FPSTR(HTML_LINK_WPS);page+="<br/>";
-  page+=FPSTR(HTML_BODYEND);
   request->send(200, "text/html", page);
   Serial.println("Request done");
+  delay(3000); // allow js and css to be loaded ...
   struct station_config newConf;  memset(&newConf, 0, sizeof(newConf));
   strlcpy((char *)newConf.ssid, clientSSID, strlen(clientSSID)+1);
   strlcpy((char *)newConf.password, clientPWD, strlen(clientPWD)+1);

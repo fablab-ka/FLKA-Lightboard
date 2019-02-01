@@ -1,0 +1,109 @@
+body {
+  background: #CCCCCC;
+}
+
+.output {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin: 5px;
+  background: #AAA;
+  font-size: 20px;
+  vertical-align: middle;
+  height: 2em;
+  line-height: 2em;
+  padding: 0.6em;
+  border-radius: 1.25em;
+  -webkit-border-radius: 1.25em;
+  -moz-border-radius: 1.25em;
+
+  -moz-box-shadow:5px 5px 5px #000000;
+  -webkit-box-shadow:5px 5px 5px #000000;
+  box-shadow:5px 5px 5px #000000;
+
+
+}
+
+.colorCode {
+  display: flex;
+  flex-direction: row;
+}
+
+.codeLines {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+  
+.codeLine {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin: 5px;
+  background: #888;
+  border-radius: 1.25em;
+  -webkit-border-radius: 1.25em;
+  -moz-border-radius: 1.25em;
+  
+}
+.styled-select {
+  margin: 1em;
+  height: 2.5em;
+  overflow: hidden;
+  width: 2.5em;
+  background-color: #000;
+  border-radius: 1.25em;
+  -webkit-border-radius: 1.25em;
+  -moz-border-radius: 1.25em;
+}
+.styled-select select {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  height: 2em;
+  width: 3em;
+  overflow: hidden;
+  color: #fff;
+}
+
+.o {
+  height: 4em;
+  overflow: hidden;
+}
+.o0, .o[value="0"] {background-color: #000;}
+.o1, .o[value="1"] {background-color: #e00;}
+.o2, .o[value="2"] {background-color: #ee0; color:#000;}
+.o3, .o[value="3"] {background-color: #0e0;}
+.o4, .o[value="4"] {background-color: #0ee; color:#000;}
+.o5, .o[value="5"] {background-color: #00e;}
+.o6, .o[value="6"] {background-color: #e0e;}
+.o7, .o[value="7"] {background-color: #eee; color:#000;}
+
+.ipButton {
+	-moz-box-shadow: 0px 0px 0px 2px rgb(78, 78, 104);
+	-webkit-box-shadow: 0px 0px 0px 2px rgb(78, 78, 104);
+	box-shadow: 0px 0px 0px 2px rgb(78, 78, 104);
+	background-color:rgb(6, 6, 80);
+	-moz-border-radius:1em;
+	-webkit-border-radius:1em;
+	border-radius:1em;
+	border:1px solid #22a;
+	display:inline-block;
+	cursor:pointer;
+	color:#eef;
+	font-family:Arial;
+	font-size:16px;
+	padding:6px 15px;
+	text-decoration:none;
+}
+.ipButton:hover {
+	background-color:rgb(35, 79, 223);
+}
+.ipButton:active {
+	position:relative;
+	top:1px;
+}
+

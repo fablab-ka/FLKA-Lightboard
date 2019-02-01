@@ -1,0 +1,31 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Wait for new IP-Address</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="decodeIP.css" />
+  </head>
+  <body>
+    <div class="menu" id="menu">Menu later here </div>
+    <h1>Warten auf neue IP-Adresse</h1>
+    Wenn das Einloggen in das WLAN erfolgreich war, zeigt das Lightboard seine IP-Adresse über einen Farbcode an.<br>
+    Je nach Netzwerkadresse kann es erforderlich sein, dass ein oder zwei siebenstellige Farbcodes eingegeben werden müssen.
+    <h3>Gib den Farbcode ein, den das Lightboard anzeigt:</h3>
+
+    <form  autocomplete="off" class="colorCode"><!-- no stored values after refresh-->
+      <div class="codeLines">
+        <div class="codeLines" id="codeContainer">
+        
+        </div>  
+    
+        <div id="output" class="output"> </div>
+      </div>  
+    </form>  
+    <br>
+    <input type="button" id="decodeIP"  class="ipButton" value="IP-Adresse aus Farbcode ermitteln"> 
+    <input type="button" id="resetCode" class="ipButton" value="Codeeingabe neu beginnen (Reset)"> 
+
+    <script src="./decodeIP.js"></script>
+  </body>
+</html>

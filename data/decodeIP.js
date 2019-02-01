@@ -186,9 +186,7 @@ function decodeIP() {
     elem.innerHTML="";  
     if (codeLines.getStatus() === "ok") {
         let ip=codeLines.getIp();  
-        //let response ="<span onclick='window.open(\""+location.protocol+"//"+ip+"\", \"_blank\")'>"+ip+"</span>";
-        let response ="Die neue IP-Adresse des Lightboard ist:&nbsp; &nbsp;<a href=\"#\" onclick='window.open(\""+location.protocol+"//"+ip+"\", \"_blank\")'>"+ip+"</a>";
-        //let response ="<span onclick='window.open(\"http://heise.de\", \"_blank\")'>"+ip+"</span>";
+        let response ="Die neue IP-Adresse des Lightboard ist:&nbsp; &nbsp;<a href=\"#\" onclick='window.open(\"http://"+ip+"\", \"_blank\")'>"+ip+"</a>";
         console.log(response);
         //let response=ip;
         elem.innerHTML=response;

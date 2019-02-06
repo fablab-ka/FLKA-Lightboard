@@ -1,5 +1,36 @@
+.digitSelection {
+	display: inline-flex;
+	margin-left: 5px;
+	margin-top: 7px;
+	flex-flow: column;
+	flex-wrap: wrap;
+	position: absolute;
+	/*background: #F66;*/
+	opacity: 0;
+	visibility: hidden;
+	z-index: 5;
+	/*position: relative;*/
+	top: 1.5em;
+	/*width: 3em;
+	/*height: 1em; */
+	/*transition: opacity 1s 0s, visibility 0.1s 0s;*/
+	max-height: 50vh;
+	/*max-height: 200%;*/
+
+	min-width: 2em;
+	max-width: auto;
+}
+
+.digitSelectionVisible {
+	visibility: visible;
+	opacity: 1;
+	/*transition: opacity 0s 0.5s;*/
+}
 body {
   background: #CCCCCC;
+}
+.debug {
+	margin-left: 2em !important;
 }
 
 .output {
@@ -17,12 +48,9 @@ body {
   border-radius: 1.25em;
   -webkit-border-radius: 1.25em;
   -moz-border-radius: 1.25em;
-
   -moz-box-shadow:5px 5px 5px #000000;
   -webkit-box-shadow:5px 5px 5px #000000;
   box-shadow:5px 5px 5px #000000;
-
-
 }
 
 .colorCode {
@@ -38,7 +66,8 @@ body {
 }
   
 .codeLine {
-  display:flex;
+	display:flex;
+	position: relative;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
@@ -49,30 +78,29 @@ body {
   -moz-border-radius: 1.25em;
   
 }
-.styled-select {
+.codeDigit {
+	display: inline-flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	/*position: relative;*/
   margin: 1em;
   height: 2.5em;
-  overflow: hidden;
+  /*overflow: hidden;*/
   width: 2.5em;
   background-color: #000;
   border-radius: 1.25em;
   -webkit-border-radius: 1.25em;
-  -moz-border-radius: 1.25em;
-}
-.styled-select select {
-  background: transparent;
-  border: none;
-  font-size: 20px;
-  height: 2em;
-  width: 3em;
-  overflow: hidden;
-  color: #fff;
+	-moz-border-radius: 1.25em;
+	cursor: pointer;
 }
 
 .o {
-  height: 4em;
-  overflow: hidden;
+	height: 3em;
+	width: 2em;
+	margin: 3px;
+	padding: 3px;
 }
+
 .o0, .o[value="0"] {background-color: #000;}
 .o1, .o[value="1"] {background-color: #e00;}
 .o2, .o[value="2"] {background-color: #ee0; color:#000;}
@@ -81,6 +109,21 @@ body {
 .o5, .o[value="5"] {background-color: #00e;}
 .o6, .o[value="6"] {background-color: #e0e;}
 .o7, .o[value="7"] {background-color: #eee; color:#000;}
+
+.o:hover {
+	margin-left: 1em;
+	border: 4px red solid;
+}
+
+.codeDigit[value="0"] {background-color: #000;}
+.codeDigit[value="1"] {background-color: #e00;}
+.codeDigit[value="2"] {background-color: #ee0; color:#000;}
+.codeDigit[value="3"] {background-color: #0e0;}
+.codeDigit[value="4"] {background-color: #0ee; color:#000;}
+.codeDigit[value="5"] {background-color: #00e;}
+.codeDigit[value="6"] {background-color: #e0e;}
+.codeDigit[value="7"] {background-color: #eee; color:#000;}
+
 
 .ipButton {
 	-moz-box-shadow: 0px 0px 0px 2px rgb(78, 78, 104);

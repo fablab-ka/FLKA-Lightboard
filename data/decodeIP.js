@@ -16,7 +16,7 @@ function codeLine(octElement) {
         this.status = "error";
         this.adrType = "single";
         this.addCodeLine(1);
-        this.element.addEventListener("change", this);
+        document.addEventListener("click", this);
     };
 
     this.getIp = function() {
@@ -33,17 +33,15 @@ function codeLine(octElement) {
         if (toAdd == null) {
             let codeDiv = document.createElement("div");
             codeDiv.className = "codeLine";
-            codeDiv.id = elemId;
+            codeDiv.id = elemId;  //ok
             var content = "";
             for (let i = 0; i < 7; i++) {
-                content = content + "<div class=\"styled-select\" ><select id=\"" + elemId + "-" + i + "\" class=\"octPos\" onchange=\"\" required >";
-                content = content + "<option class=\"o\" value=\"0\" selected> &nbsp;" + 0 + " </option>";
-                for (let j = 1; j < 8; j++) {
-                    content = content + "<option class=\"o\" value=\"" + j + "\"> &nbsp;" + j + " </option>";
+                content = content + "<div class=\"codeDigit\" ><div id=\"" + elemId + "-" + i + "\" class=\"digitSelection\" onclick=\"\" >";
+                for (let j = 0; j < 8; j++) {
+                    content = content + "<div class=\"o\" value=\"" + j + "\"></div>";
                 }
-                content = content + "</select></div>";
+                content = content + "</div></div>";
             }
-            content = content + "</div>";
             codeDiv.innerHTML = content;
             this.element.appendChild(codeDiv);
         }
@@ -75,9 +73,10 @@ function codeLine(octElement) {
             let elemId = "codeLine-" + LineId;
             let currLine = document.querySelector("#" + elemId);
             if (currLine !== null) {
-                let digits = currLine.querySelectorAll(".octPos");
+                let digits = currLine.querySelectorAll(".codeDigit");
                 for (let i = 0; i < digits.length; i++) {
-                    lines[LineId - 1] += digits[i].value;
+                    let val = digits[i].getAttribute("value");
+                    lines[LineId - 1] += (val == null) ? 0 : val;
                 }
             } else {
                 lines[LineId - 1] = "0000000";
@@ -152,10 +151,23 @@ function codeLine(octElement) {
     };
 
 
-    this.handleEvent = function(evt) {
-        if (evt.type == "change") {
-            evt.target.parentNode.className = "styled-select o" + evt.target.value;
-            this.checkCode();
+    this.handleEvent = function(event) {
+        if (event.type == "click") {
+            if (event.target.classList.contains("o") && event.target.parentNode.classList.contains("digitSelection")) {
+              let value = event.target.getAttribute("value");
+              if (value !== null) {
+                event.target.parentNode.parentNode.setAttribute("value", value);
+                this.checkCode();
+              }
+            }
+            let elems = document.querySelectorAll(".digitSelectionVisible");
+            for (let i=0; i<elems.length; i++) {
+              elems[i].classList.remove("digitSelectionVisible");
+            }
+            if (event.target.classList.contains("codeDigit")) {
+              let codeDigit = event.target.querySelector("div.digitSelection");
+              codeDigit.classList.add("digitSelectionVisible");
+            }  
         }
     };
 
@@ -186,7 +198,7 @@ function decodeIP() {
     elem.innerHTML = "";
     if (codeLines.getStatus() === "ok") {
         let ip = codeLines.getIp();
-        let response = "Die neue IP-Adresse des Lightboard ist:&nbsp; &nbsp;<a href=\"#\" onclick='window.open(\"http://" + ip + "\", \"_blank\")'>" + ip + "</a>";
+        let response = "Die IP-Adresse des Lightboard ist:&nbsp; <a href=\"#\" onclick='window.open(\"http://" + ip + "\", \"_blank\")'>" + ip + "</a>";
         console.log(response);
         //let response=ip;
         elem.innerHTML = response;

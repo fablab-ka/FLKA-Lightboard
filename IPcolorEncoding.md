@@ -47,6 +47,7 @@ The encoded octal codes will therefore look like:
 As soon, as we detect a digit of "**6**" at the first position, we know, that we have to reverse the string. This eases the handling, as we can use this encoding also in cases, where a direction of the LEDs is hard to define e.g. LED-rings etc.
 
 ###Some Examples###
+
 |octal Value| decoded IP-address | comment|
 |-----------|--------------------|--------|
 |0020016 | 192.168.4.1 | as the first digit is on the range of 0-1, its a 192.168 address|

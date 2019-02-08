@@ -118,7 +118,7 @@ void handleWiFiConnect2AP(AsyncWebServerRequest *request){
   page = page+"<h1>"+FPSTR(HTML_TITLE_APCONNECT)+"</h1>";
   if (numWLANs == -1) { //scan still in progress
     // warte, bis der Scan fertig ist
-    while(numWLANs == -1){ yield(); numWLANs=  WiFi.scanComplete();}
+    while(numWLANs == -1){ numWLANs=  WiFi.scanComplete();}
   }
   if (numWLANs == 0) {
     page += FPSTR(HTML_NO_WLAN_FOUND);  
@@ -156,6 +156,7 @@ void handleWiFiConnect2AP(AsyncWebServerRequest *request){
   page+=FPSTR(HTML_LINK_AP_CONFIG);page+="<br>";
   //page+=FPSTR(HTML_LINK_WPS);page+="<br>";
   page+=FPSTR(HTML_BODYEND);
+  WiFi.scanDelete();
   request->send(200, "text/html", page);
   WiFi.scanNetworks(true);  //Starte nächsten WLAN-Scan (nach dem Requestende des Servers!!)
 }
@@ -257,18 +258,22 @@ void onWsEvent(AsyncWebSocket * server, AsyncWebSocketClient * client, AwsEventT
               //set RGB color
               JsonArray& value = root["value"];
               RGBtoSet[0]=value[0];RGBtoSet[1]=value[1];RGBtoSet[2]=value[2];
-              pending_RGB = true;
-              cycleRGB=0;
+              pending_LED_Action = true;
+              LED_Action_Type=0; // RGB
             }
             if(0 == strncmp("CYCLE", cmd, 5)) {
-              pending_RGB = false;
-              cycleRGB = 1;
+              pending_LED_Action = true;
+              LED_Action_Type = 1;
               RGBdelay=root["delay"];
             }
             if(0 == strncmp("RAINBOW", cmd, 7)) {
-              pending_RGB = false;
-              cycleRGB = 2;
+              pending_LED_Action = true;
+              LED_Action_Type = 2;
               RGBdelay=root["delay"];
+            }
+            if(0 == strncmp("IP", cmd, 7)) {
+              pending_LED_Action = true;
+              LED_Action_Type = 3;
             }
             
           }
@@ -300,10 +305,9 @@ void do_SetRGB() {
   for(uint8_t i=0; i< strip.numPixels(); i++) {
     strip.setPixelColor(i, RGBtoSet[0], RGBtoSet[1], RGBtoSet[2]); 
   }
-  yield();
   strip.show();
-  pending_RGB = false;
-  cycleRGB = 0;
+  pending_LED_Action = false;
+  LED_Action_Type = 0;
 }
 void do_CycleRGB() {
   uint16_t i;
@@ -311,9 +315,7 @@ void do_CycleRGB() {
   if ((lastRun+RGBdelay) < millis()) {
     for(i=0; i<strip.numPixels(); i++) {
       strip.setPixelColor(i, Wheel(((i * 256 / strip.numPixels()) + j) & 255));
- //     ESP.wdtFeed();
     }
-    yield();
     j=(j+1) % 256;
     strip.show();
     lastRun=millis();
@@ -328,10 +330,68 @@ void do_Rainbow() {
     for(i=0; i<strip.numPixels(); i++) {
       strip.setPixelColor(i, Wheel((i+j) & 255));
     }
-    yield();
     j=(j+1) % 256;
     strip.show();
     lastRun=millis();
+  }  
+}
+
+uint32_t octalColorCodes[] = {
+         0,                                                      // white
+         ((uint32_t)0x2D << 16) | ((uint32_t)0x00 << 8) | 0x00,  // red
+         ((uint32_t)0x69 << 16) | ((uint32_t)0x69 << 8) | 0x00,  // yellow
+         ((uint32_t)0x11 << 16) | ((uint32_t)0x6E << 8) | 0x00,  // green
+         ((uint32_t)0x00 << 16) | ((uint32_t)0x42 << 8) | 0x17,  // cyan
+         ((uint32_t)0x00 << 16) | ((uint32_t)0x00 << 8) | 0x64,  // blue
+         ((uint32_t)0x50 << 16) | ((uint32_t)0x00 << 8) | 0x50,  // purple
+         ((uint32_t)0x3F << 16) | ((uint32_t)0x3F << 8) | 0x3F   // white
+};
+
+void encodeIP2color(uint8_t frameID, uint32_t frameData) {
+  for(int i=0;i<strip.numPixels();i++){
+    strip.setPixelColor(i, strip.Color(0,0,0));
+  }
+  strip.setPixelColor(0, octalColorCodes[6]); //direction-marker
+  for(int i=1; i<6; i++){
+    uint8_t j = frameData % 8;
+    frameData = frameData >> 3;
+    strip.setPixelColor(i, octalColorCodes[j]);
+  }
+  uint8_t startPos  = (frameData % 8)+frameID;
+  strip.setPixelColor(6, octalColorCodes[startPos]);
+  strip.show();
+}
+
+void do_showIP() {
+  os_printf("showIP\n");
+  static uint32_t lastrun = 0;
+  static uint8_t noTurns = 0;
+  boolean singleFrame = (myHigherIP == 49320) ? true : false;
+  uint8_t frameNo = 0;
+  if (( lastrun + 10*1000) < millis() || (0 == lastrun)) {
+    os_printf("  Turn: %u\n", noTurns);
+    if (singleFrame) {
+      encodeIP2color(0, myLowerIP);
+    } else {
+      if (0 == frameNo ) {
+        encodeIP2color(2, myLowerIP);
+        frameNo=1;
+      } else {
+        encodeIP2color(4, myHigherIP);
+        frameNo=0;
+      }
+    }
+    os_printf("Frame %u sent\n", frameNo);
+    lastrun= millis();
+    noTurns++;
+  }  
+  if (noTurns > 10) {
+    pending_LED_Action=false;
+    LED_Action_Type=0;
+    for(int i=0;i<strip.numPixels();i++){
+      strip.setPixelColor(i, strip.Color(0,0,0));
+    }
+    strip.show();
   }  
 }
 
@@ -350,13 +410,16 @@ void do_pending_Actions(void){
     delay(50);
     ESP.restart();
   }  
-  if (pending_RGB) {
-    do_SetRGB();
-  }
-  if (1 == cycleRGB) {
-    do_CycleRGB();
-  }
-  if (2 == cycleRGB) {
-    do_Rainbow();
-  }
+  if (pending_LED_Action) {
+    switch (LED_Action_Type) {
+      case 0:  do_SetRGB();
+               break;
+      case 1:  do_CycleRGB();
+               break;
+      case 2:  do_Rainbow();
+               break;                     
+      case 3:  do_showIP();
+               break;                     
+    }
+  }  
 }

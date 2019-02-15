@@ -52,12 +52,14 @@ char myIPaddress[18]="000.000.000.000  ";
 IPAddress myIP = 0;
 uint16_t myLowerIP, myHigherIP = 0;
 
-//Adafruit_NeoPixel strip = Adafruit_NeoPixel(9, 14, NEO_GRB + NEO_KHZ800);  //D5
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(9, 12, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(9, 14, NEO_GRB + NEO_KHZ800);  //D5
+//Adafruit_NeoPixel strip = Adafruit_NeoPixel(9, 12, NEO_GRB + NEO_KHZ800);
 
 
 
 void setup(){
+  pinMode( 0,OUTPUT);
+  digitalWrite(0, HIGH);
   Serial.begin(115200);
   //Serial.setDebugOutput(true);
   LoadAndCheckConfiguration();
@@ -71,9 +73,10 @@ void setup(){
   Serial.println("Start in Client Mode!");
   WiFi.begin();
   if (WiFi.waitForConnectResult() != WL_CONNECTED) {
-    Serial.println("Start in Access Point Mode!");
+    Serial.print("Start in Access Point Mode: ");
+    delay(200);
     WiFi.mode(WIFI_AP);
-    WiFi.softAP(GlobalConfig.mySSID, GlobalConfig.myPWD, GlobalConfig.myChannel);
+    Serial.println(WiFi.softAP(GlobalConfig.mySSID, GlobalConfig.myPWD, GlobalConfig.myChannel) ? "succesful!" : "failed!");
     strlcpy(myIPaddress, WiFi.softAPIP().toString().c_str(), sizeof(myIPaddress));
     myIP=WiFi.softAPIP();
     Serial.println(GlobalConfig.mySSID);
@@ -81,21 +84,19 @@ void setup(){
     WiFi.setAutoReconnect(true);
     strlcpy(myIPaddress, WiFi.localIP().toString().c_str(), sizeof(myIPaddress));
     myIP=WiFi.localIP();
+    
   }
+  Serial.println( myIP.toString().c_str() );
   myHigherIP=myIP[1]+256*myIP[0];
   myLowerIP=myIP[3]+256*myIP[2];
-  os_printf("IP: %s  Higher: %u   Lower: %u\n", myIP.toString().c_str(), myHigherIP, myLowerIP);
-   
-  int16_t numWLANs=  WiFi.scanComplete();
-  if (numWLANs == -2) { // es gab bislang noch keinen WLAN-Scan
-    WiFi.scanNetworks(true);
-  }
+ 
   setupWebserver();
   if (MDNS.begin(CONF_MDNS_NAME)) {
     Serial.println("MDNS started!");
   } else {
     Serial.println("MDNS not initialized!");
   }
+  MDNS.addService("http","tcp",80);
   strip.begin();
   strip.setBrightness(100);
   strip.show(); 

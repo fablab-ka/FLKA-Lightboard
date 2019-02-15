@@ -2,7 +2,7 @@
 This device makes use of color encoded IP addresses, when the device is connected to a WLAN as client.
 Besides mDNS this is another way, how the user can get access to the device.
 
-## Octal based encoding##
+## Octal based encoding ##
 The color coding is based on the Octal system, where colors are assigned to the digits 0-7.
 
 | Value | Color | Code |
@@ -21,7 +21,7 @@ We can't handle a full 32-bit IP-address with 9 LED, as 8^9 (134.217.728) is muc
 The highest possible 16-bit value **65535**(dez) is **177777**(oct), which means, that we need only six digits.
 To make the encoding more stable, we add a seventh digit for direction control.
 
-## Encoding details##
+## Encoding details ##
 The first digit can only hold the value **0** or **1**, as the range goes from 000000 to 177777.
 That allows us, to put additional information into that digit:
 If we encode an IP-address from the 192.168.x subnet, we only encode the last two bytes from that address and thats it.
@@ -46,7 +46,8 @@ The encoded octal codes will therefore look like:
 
 As soon, as we detect a digit of "**6**" at the first position, we know, that we have to reverse the string. This eases the handling, as we can use this encoding also in cases, where a direction of the LEDs is hard to define e.g. LED-rings etc.
 
-###Some Examples###
+### Some Examples ###
+
 |octal Value| decoded IP-address | comment|
 |-----------|--------------------|--------|
 |0020016 | 192.168.4.1 | as the first digit is on the range of 0-1, its a 192.168 address|

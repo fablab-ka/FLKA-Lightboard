@@ -85,17 +85,19 @@ Compilieren und Laden des Programmes
 ------------------------------------
 - Herunterladen des Programmcodes oder Clonen des Github-Repositories
 - Installieren der zusätzlichen Komponenten in der Arduino IDE
-  - ESP8266 Toolchain (entweder über Bibliotheksmanager oder aus [Github]([GIT-Version](https://arduino-esp8266.readthedocs.io/en/latest/installing.html#using-git-version)
-  - Installation des [ESP Sketch Data Upload-Tools](http://esp8266.github.io/Arduino/versions/2.3../docs/filesystem.html#uploading-files-to-file-system)
+  - ESP8266 Toolchain (entweder über den Boardverwalter oder [direkt aus Github](https://arduino-esp8266.readthedocs.io/en/latest/installing.html#using-git-version)
+  - Installation des [ESP Sketch Data Upload-Tools](https://github.com/esp8266/arduino-esp8266fs-plugin)
   - Optional: [ESP Exception Stack Decoder](https://github.com/me-no-dev/EspExceptionDecoder) 
-  - [**ESPAsyncUDP.h**]( http://github.com/me-no-dev/ESPAsyncUDP "Asynchrones UDP")
-  - [**ESPAsyncTCP.h**]( http://github.com/me-no-dev/ESPAsyncTCP "Asynchrones TCP")
+  - [**ESPAsyncUDP.h**]( http://github.com/me-no-dev/ESPAsyncUDP)
+  - [**ESPAsyncTCP.h**]( http://github.com/me-no-dev/ESPAsyncTCP)
   - Adafruit Neopixel (Über den Bibliotheksmanager der Arduino IDE)
 - Öffnen der Datei FLKA-Lightboard.ino in der Arduino IDE
 - Folgende Einstellungen für das Board vornehmen:
   - ***Lolin (Wemos) D1 R2 & mini***
   - Flash Size: ***4M (3M SPIFFS)***
+  - Debug Port: ***Serial***
   - Erase Flash: ***All Flash Contents*** 
+  - COM-Port: ***aktuellen COM-Port des angesteckten WeMOS D1***
 - Programm Compilieren und auf den Controller laden
 - Inhalt des SPIFFS-Dateisystem mit dem Menüpunkt: ***Werkzeuge=> ESP8266 Sketch Data Upload*** auf den Controller laden.
 - Für ein erneutes Hochladen des Programmcodes ***Erase Flash*** wieder auf ***Only Sketch*** stellen. Somit bleiben das SPIFFS-Dateisystem und eventuell gespeicherte Konfigurationsdaten erhalten.

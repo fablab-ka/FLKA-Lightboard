@@ -78,8 +78,9 @@ Bibliotheken
 ------------
 Neben den vorhandenen Arduino bzw. ESP-Standardbibliotheken werden folgende Bibliotheken aus Github-Repositories ohne Veränderung verwendet:
 
-- [**ESPAsyncUDP.h**]( http://github.com/me-no-dev/ESPAsyncUDP "Asynchrones UDP")
-- [**ESPAsyncTCP.h**]( http://github.com/me-no-dev/ESPAsyncTCP "Asynchrones TCP")
+- [**ESPAsyncUDP.h**]( https://github.com/me-no-dev/ESPAsyncUDP "Asynchrones UDP")
+- [**ESPAsyncTCP.h**]( https://github.com/me-no-dev/ESPAsyncTCP "Asynchrones TCP")
+- [**ESPAsyncWebServer.h]( https://github.com/me-no-dev/ESPAsyncWebServer "ESP Async Webserver")
 
 Compilieren und Laden des Programmes
 ------------------------------------

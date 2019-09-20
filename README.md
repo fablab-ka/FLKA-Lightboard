@@ -92,6 +92,7 @@ Compilieren und Laden des Programmes
   - [**ESPAsyncUDP.h**]( http://github.com/me-no-dev/ESPAsyncUDP)
   - [**ESPAsyncTCP.h**]( http://github.com/me-no-dev/ESPAsyncTCP)
   - Adafruit Neopixel (Über den Bibliotheksmanager der Arduino IDE)
+  - ArduinoJSON from Benoit Blanchon in Version **5.13**
 - Öffnen der Datei FLKA-Lightboard.ino in der Arduino IDE
 - Folgende Einstellungen für das Board vornehmen:
   - ***Lolin (Wemos) D1 R2 & mini***

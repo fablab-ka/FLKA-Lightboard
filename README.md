@@ -110,7 +110,7 @@ Aktuell implementierte Funktionen
 Derzeit startet der ESP in den AP-Mode und ist über den im Sourcecode hinterlegten SSID-Namen **FLKA-LIGHTBOARD** und das Passwort **ABCdef123456** erreichbar.
 Die vorkonfigurierten Werte für SSID, WLAN-Passwort, Admin-Account und Passwort lassen sich in der Datei ***AllIncludes.h*** ändern. Die Werte können jedoch später zur Laufzeit jederzeit in der Weboberfläche geändert werden.
 Sollte der ESP bereits die Zugangsinformationen zu einem aktuell erreichbaren WLAN gespeichert haben (z.B. weil vorher ein anderer Sketch geladen war), so verbindet er sich dorthin! Um das zu verhindern, sollte der ESP beim ersten Programmieren mit der Option ***"Erase Flash: All Flash contents"*** programmiert werden.
-Wird der ESP später als Client in ein anderes WLAN gehangen, so ist es einerseits über mDNS erreichbar (aka Bonjour) oder es muss am jeweiligen Router nachgesehen werden, welche IP das Gerät bekommen hat.
+Wird der ESP später als Client in ein anderes WLAN gehangen, so ist es einerseits über mDNS erreichbar (aka Bonjour) bzw. man kann über den angezeigten Farbcode und den [Farbcode-Umrechner](https://fablab-ka.github.io/FLKA-Lightboard/decodeIP.html) die IP-Adresse des Lightboards ermitteln. 
 
 
 
